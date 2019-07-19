@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import PeopleList from './Person/PeopleList'
-import Letters from './Letters/Letters'
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import PeopleList from './components/Person/PeopleList'
+import Letters from './components/Letters/Letters'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 
 class App extends Component {
     render() {

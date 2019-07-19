@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Person.module.css';
 import Person from "./Person";
+import Toggler from '../Toggler/Toggler'
 import Radium, { StyleRoot } from 'radium'
 
 class PeopleList extends Component {
@@ -32,7 +33,7 @@ class PeopleList extends Component {
         })
     }
 
-    toogleShow = () => {
+    toggleShow = () => {
         this.setState({
             show: !this.state.show
         })
@@ -45,16 +46,6 @@ class PeopleList extends Component {
     }
 
     render() {
-
-        const style = {
-            backgroundColor: this.state.show ? 'red' : 'green',
-            color: 'white',
-            ':hover': {
-                backgroundColor: this.state.show ? 'pink' : 'lightgreen',
-                color: 'black'
-            }
-        }
-
         const renderPeople = this.state.show ?
             this.state.people.map(
                 (person, index) => <Person
@@ -67,25 +58,11 @@ class PeopleList extends Component {
             )
             : null
 
-        let classes = []
-
-        if (this.state.people.length <= 2) {
-            classes.push('red')
-        }
-
-        if (this.state.people.length <= 1) {
-            classes.push('bold')
-        }
-
         return (
             <StyleRoot>
-                <div className="App">
-                    <h1>People</h1>
-                    <p className={classes.join(' ')}>Everyone is important!</p>
-                    <button style={style} onClick={this.toogleShow}>{ this.state.show ? 'Hide' : 'Show' }</button>
-                    <div>
-                        { renderPeople }
-                    </div>
+                <div>
+                    <Toggler people={this.state.people} show={this.state.show} toggle={this.toggleShow} />
+                    { renderPeople }
                 </div>
             </StyleRoot>
         );
