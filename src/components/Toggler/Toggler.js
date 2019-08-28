@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
+import Radium from 'radium'
 
 const Toggler = (props) => {
     const style = {
@@ -12,11 +13,11 @@ const Toggler = (props) => {
 
     let classes = []
 
-    if (props.people.length <= 2) {
+    if (props.peopleLength <= 2) {
         classes.push('red')
     }
 
-    if (props.people.length <= 1) {
+    if (props.peopleLength <= 1) {
         classes.push('bold')
     }
 
@@ -30,4 +31,5 @@ const Toggler = (props) => {
 
 }
 
-export default Toggler
+//memo using the last render result if nothing changed
+export default memo(Radium(Toggler))

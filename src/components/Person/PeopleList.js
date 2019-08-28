@@ -5,6 +5,7 @@ import Toggler from '../Toggler/Toggler'
 import Radium, { StyleRoot } from 'radium'
 
 class PeopleList extends Component {
+
     state = {
         people: [
             {id:1, name: 'Kostya', age: 30},
@@ -13,6 +14,8 @@ class PeopleList extends Component {
         ],
         show: false
     }
+
+
 
     changeName = (event, id) => {
         let personIndex = this.state.people.findIndex(p => {
@@ -61,7 +64,11 @@ class PeopleList extends Component {
         return (
             <StyleRoot>
                 <div>
-                    <Toggler people={this.state.people} show={this.state.show} toggle={this.toggleShow} />
+                    <Toggler
+                        peopleLength={this.state.people.length}
+                        show={this.state.show}
+                        toggle={this.toggleShow}
+                    />
                     { renderPeople }
                 </div>
             </StyleRoot>
