@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import Radium from 'radium'
+import './Toggler.css';
 
 const Toggler = (props) => {
     const style = {
