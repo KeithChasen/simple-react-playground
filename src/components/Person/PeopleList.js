@@ -12,7 +12,9 @@ class PeopleList extends Component {
             {id:2, name: 'John', age: 52},
             {id:3, name: 'Paul', age: 71},
         ],
-        show: false
+        show: false,
+
+        changeCounter: 0
     }
 
 
@@ -31,8 +33,11 @@ class PeopleList extends Component {
         let people = [...this.state.people]
         people[personIndex] = person
 
-        this.setState({
-            people
+        this.setState((prevState, props) => {
+            return {
+                people,
+                changeCounter: prevState.changeCounter + 1
+            }
         })
     }
 
@@ -64,6 +69,7 @@ class PeopleList extends Component {
         return (
             <StyleRoot>
                 <div>
+                    <p>Changes: { this.state.changeCounter }</p>
                     <Toggler
                         peopleLength={this.state.people.length}
                         show={this.state.show}
