@@ -1,8 +1,20 @@
-import React, { memo } from 'react';
-import Radium from 'radium'
+import React, { useRef, useEffect } from 'react';
 import './Toggler.css';
 
-const Toggler = (props) => {
+const Toggler = props => {
+    const toggleBtnRef = useRef(null)
+
+    useEffect(() => {
+        console.log('Toggler useEffect')
+
+        toggleBtnRef.current.click()
+
+        return () => {
+            console.log('Toggler cleanup work in useEffect')
+        }
+    },[])
+
+
     const style = {
         backgroundColor: props.show ? 'red' : 'green',
         color: 'white',
@@ -26,11 +38,16 @@ const Toggler = (props) => {
         <div>
             <h1>People</h1>
             <p className={classes.join(' ')}>Everyone is important!</p>
-            <button style={style} onClick={props.toggle}>{ props.show ? 'Hide' : 'Show' }</button>
+            <button
+                ref={toggleBtnRef}
+                style={style}
+                onClick={props.toggle}
+            >
+                { props.show ? 'Hide' : 'Show' }
+            </button>
         </div>
     )
 
 }
 
-//memo using the last render result if nothing changed
-export default memo(Radium(Toggler))
+export default Toggler
